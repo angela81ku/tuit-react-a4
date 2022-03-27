@@ -5,6 +5,7 @@ import * as service from "../../services/security-service"
 import TuitsAndReplies from "./tuits-and-replies";
 import Media from "./media";
 import MyLikes from "./my-likes";
+import MyDislikes from "./my-dislikes";
 const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,6 +15,7 @@ const Profile = () => {
       const user = await service.profile();
       setProfile(user);
     } catch (e) {
+      // console.log(e)
       navigate('/login');
     }
   }, []);
@@ -32,8 +34,10 @@ const Profile = () => {
           <img className="w-100" src="../images/nasa-profile-header.jpg"/>
           <div className="bottom-0 left-0 position-absolute">
             <div className="position-relative">
-              <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                   src="../images/nasa-3.png"/>
+
+              <img
+                   src={`../images/${profile.username}.jpg`}
+                   className="ttr-tuit-avatar-logo rounded-circle position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"/>
             </div>
           </div>
           <Link to="/profile/edit"
@@ -87,6 +91,11 @@ const Profile = () => {
                     className={`nav-link ${location.pathname.indexOf('likes') >= 0 ? 'active':''}`}>
                 Likes</Link>
             </li>
+            <li className="nav-item">
+              <Link to="/profile/dislikes"
+                    className={`nav-link ${location.pathname.indexOf('dislikes') >= 0 ? 'active':''}`}>
+                Dislikes</Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -95,6 +104,7 @@ const Profile = () => {
           <Route path="/tuits-and-replies" element={<TuitsAndReplies/>}/>
           <Route path="/media" element={<Media/>}/>
           <Route path="/likes" element={<MyLikes/>}/>
+          <Route path="/dislikes" element={<MyDislikes/>}/>
         </Routes>
     </div>
   );

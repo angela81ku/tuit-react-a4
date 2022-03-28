@@ -20,16 +20,16 @@ test('user list renders static user array', () => {
   const linkElement = screen.getByText(/ellen_ripley/i);
   expect(linkElement).toBeInTheDocument();
 });
-
-test('user list renders async', async () => {
-  const users = await findAllUsers();
-  render(
-    <HashRouter>
-      <UserList users={users}/>
-    </HashRouter>);
-  const linkElement = screen.getByText(/alice/i);
-  expect(linkElement).toBeInTheDocument();
-})
+//see the user list mock test
+// test('user list renders async', async () => {
+//   const users = await findAllUsers();
+//   render(
+//     <HashRouter>
+//       <UserList users={users}/>
+//     </HashRouter>);
+//   const linkElement = screen.getByText(/alice/i);
+//   expect(linkElement).toBeInTheDocument();
+// })
 
 test('user list renders mocked', async () => {
   axios.get.mockImplementation(() =>

@@ -8,10 +8,18 @@ const Tuits = ({tuits = [], refreshTuits}) => {
     const likeTuit = (tuit) =>
         likesService.userLikesTuit("me", tuit._id)
             .then(refreshTuits)
+            // .then(likedTuit =>{
+            //     tuit.stats.likedByMe = true
+            //     tuit.stats.dislikedByMe = false}
+            // )
             .catch(e => alert(e))
     const dislikeTuit = (tuit) =>
         dislikesService.userDislikesTuit("me", tuit._id)
             .then(refreshTuits)
+            // .then(dislikedTuit=>{
+            //     tuit.stats.dislikedByMe = true
+            //     tuit.stats.likedByMe = false
+            // })
             .catch(e => alert(e))
     const deleteTuit = (tid) =>
         service.deleteTuit(tid)

@@ -3,7 +3,8 @@ import Tuits from "../tuits";
 import * as service from "../../services/tuits-service";
 import {useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
-
+import * as dis_service from "../../services/dislikes-service";
+import * as like_service from "../../services/likes-service"
 const Home = () => {
   const location = useLocation();
   const {uid} = useParams();
@@ -11,11 +12,29 @@ const Home = () => {
   const [tuit, setTuit] = useState('');
   const userId = uid;
   const findTuits = () =>
-      service.findAllTuits()
-        .then(tuits => setTuits(tuits));
+  {service.findAllTuits()
+        .then(tuits => setTuits(tuits))
+  findTuitsILike()
+    findTuitsIDislike()
+  };
+
+
+  const findTuitsILike = () =>
+      like_service.findAllTuitsLikedByUser("me")
+          .then((tuits) => {
+            // tuits.stats.likedByMe = true
+            // tuits.stats.dislikedByMe = false
+          });
+  const findTuitsIDislike = () =>
+      dis_service.findAllTuitsDislikedByUser("me")
+          .then((tuits) => {
+            // tuits.stats.dislikedByMe = true
+            // tuits.stats.likedByMe = false
+          });
   useEffect(() => {
     let isMounted = true;
     findTuits()
+
     return () => {isMounted = false;}
   }, []);
   const createTuit = () =>

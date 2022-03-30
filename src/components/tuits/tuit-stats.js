@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import * as service from "../../services/likes-service";
 import * as dis_service from "../../services/dislikes-service";
 const TuitStats = ({tuit, likeTuit = () => {},dislikeTuit = () => {}}) => {
-    // useEffect()
+    // // useEffect()
     // const userAlreadyLikedTuit = () =>
     //     service.findAllTuitsLikedByUser("me")
     //         .then((tuits) => setLikedTuis(tuits));

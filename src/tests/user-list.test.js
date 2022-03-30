@@ -3,7 +3,7 @@ import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import {findAllUsers} from "../services/users-service";
 import axios from "axios";
-import {createUser} from "./services";
+import {createUser} from "../services/services";
 
 jest.mock('axios');
 
